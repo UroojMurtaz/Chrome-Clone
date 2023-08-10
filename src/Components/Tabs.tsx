@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AiFillAlert,AiOutlineClose } from "react-icons/ai";
 
 const Tabs = ({ tabs}) => {
   const [activeTab, setActiveTab] = useState(0);
@@ -8,14 +9,16 @@ const Tabs = ({ tabs}) => {
       {tabs.map((tab:typeof tabs, index:number) => (
         <button
           key={index}
-          className={`py-2 px-4 ${
+          className={`py-2 px-4 w-full ${
             activeTab === index
-              ? 'border-b-2 border-blue-500 text-blue-500'
+              ? 'rounded-t-lg border-b-2 border-white text-black bg-white '
               : 'text-gray-500'
           }`}
           onClick={() => setActiveTab(index)}
         >
+          <AiFillAlert className="inline-block mr-2" />
           {tab.label}
+          <AiOutlineClose className="inline-block ml-6" />
         </button>
       ))}
     </div>
