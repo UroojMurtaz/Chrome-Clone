@@ -25,7 +25,12 @@ const Tabs = ({ tabs }) => {
                 : "text-gray-500 text-sm bg-slate-100"
             } ${
               index !== tabs.length && activeTab !== index
-                ? "border-r-2 border-slate-400 px-4 border-l-0"
+                ? "border-r-2 border-slate-400 px-4 border-l-0 rounded-t-lg ml-2"
+                : ""
+            }
+            ${
+              activeTab === 0
+                ? "rounded-t-lg ml-2"
                 : ""
             }
             `}

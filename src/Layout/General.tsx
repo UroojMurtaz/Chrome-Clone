@@ -2,6 +2,7 @@ import React from "react";
 import Tabs from "../Components/Tabs";
 import { Outlet } from "react-router-dom";
 import SearchBar from "../Components/SearchBar";
+import { BsHouseFill } from "react-icons/bs";
 
 const General = () => {
   const tabs = [
@@ -14,19 +15,18 @@ const General = () => {
   return (
     <>
       <div className="min-h-screen flex flex-col">
-        <header className="bg-slate-100  text-white sticky top-0 z-10 ">
-          <Tabs tabs={tabs} />
+        <header className="bg-white  text-white sticky top-0 z-10 ">
+          <div className="bg-slate-100  text-white sticky top-0 z-10 ">
+            <Tabs tabs={tabs} />
+          </div>
+          <SearchBar />
+          <hr className="mt-5 sticky top-0 z-10" />
         </header>
-        <SearchBar />
-        <hr className="mt-5"/>
 
-        <main className="flex-grow p-4 overflow-auto">
+        <main className="flex-grow overflow-auto ">
           {" "}
           <Outlet />
         </main>
-        <footer className="bg-gray-800 text-white p-4">
-          This is the footer
-        </footer>
       </div>
     </>
   );
