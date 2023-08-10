@@ -1,5 +1,3 @@
-import React from "react";
-
 const Page1 = () => {
   return (
     <>
@@ -11,10 +9,7 @@ const Page1 = () => {
                 Add Tab
               </h1>
               <div>
-                <label
-                  
-                  className="block mb-1 text-gray-600 font-semibold"
-                >
+                <label className="block mb-1 text-gray-600 font-semibold">
                   Icon
                 </label>
                 <input
@@ -22,12 +17,9 @@ const Page1 = () => {
                   className="bg-indigo-50 px-4 py-2 outline-none rounded-md w-full"
                 />
               </div>
-              
+
               <div>
-                <label
-                 
-                  className="block mb-1 text-gray-600 font-semibold"
-                >
+                <label className="block mb-1 text-gray-600 font-semibold">
                   Description
                 </label>
                 <input
