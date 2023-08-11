@@ -1,14 +1,16 @@
 import Tabs from "../Components/Tabs";
 import { Outlet } from "react-router-dom";
 import SearchBar from "../Components/SearchBar";
+import { FaBeer, FaCoffee } from "react-icons/fa";
 
 const General = () => {
   const tabs = [
-    { label: "Tab 1 Google Chrome", content: "Content for Tab 1" },
-    { label: "Tab 2 its Urooj", content: "Content for Tab 2" },
-    { label: "Tab 2 its Urooj", content: "Content for Tab 2" },
-    { label: "Tab 2 its Urooj", content: "Content for Tab 2" },
-    { label: "Tab 2 its Urooj", content: "Content for Tab 2" },
+    {
+      label: "Tab 1 Google Chrome",
+      content: "Content for Tab 1",
+      icon: FaBeer,
+    },
+    { label: "Tab 2 its Urooj", content: "Content for Tab 2", icon: FaCoffee },
   ];
   return (
     <>
