@@ -28,13 +28,13 @@ const Tabs: React.FC<TabsProps> = ({ tabs }) => {
   const tabWidth = calculateTabWidth();
 
   const handleCloseTab = (index: number) => {
-    const updatedTabs = tabValue.filter((tab, tabIndex) => tabIndex !== index);
+    const updatedTabs = tabValue.filter((tabIndex:number) => tabIndex !== index);
     setTabValue(updatedTabs);
   };
 
   return (
     <div className="flex overflow-x-auto">
-      {tabValue.map((tab, index) => (
+      {tabValue.map((tab:any, index:number) => (
         <button
           key={index}
           className={`py-1 px-2 ${tabWidth} ${
