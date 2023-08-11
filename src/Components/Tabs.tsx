@@ -3,38 +3,26 @@ import { AiOutlineClose } from "react-icons/ai";
 import { BiPlus } from "react-icons/bi";
 import MyContext from "../context/TabContext";
 
-interface Tab {
-  label: string;
-  // You can add more properties here if needed
-}
-
-interface TabsProps {
-  tabs: Tab[];
-}
-
-const Tabs: React.FC<TabsProps> = ({ tabs }) => {
+const Tabs: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
   const { tabValue, setTabValue } = useContext(MyContext);
-  console.log(tabValue);
- 
 
-  const maxVisibleTabs = 5; // Maximum number of tabs visible without text truncation
-
+  const maxVisibleTabs = 5;
   const calculateTabWidth = () => {
-    const visibleTabCount = Math.min(tabs.length, maxVisibleTabs);
-    return `w-${Math.floor((1 / visibleTabCount) * 12)}/12`; // Calculate width fraction
+    const visibleTabCount = Math.min(tabValue?.length, maxVisibleTabs);
+    return `w-${Math.floor((1 / visibleTabCount) * 12)}/12`;
   };
 
   const tabWidth = calculateTabWidth();
 
   const handleCloseTab = (index: number) => {
-    const updatedTabs = tabValue.filter((tabIndex:number) => tabIndex !== index);
+    const updatedTabs = tabValue.filter((_, tabIndex) => tabIndex !== index);
     setTabValue(updatedTabs);
   };
 
   return (
     <div className="flex overflow-x-auto">
-      {tabValue.map((tab:any, index:number) => (
+      {tabValue.map((tab, index) => (
         <button
           key={index}
           className={`py-1 px-2 ${tabWidth} ${
@@ -48,7 +36,7 @@ const Tabs: React.FC<TabsProps> = ({ tabs }) => {
           } ${index === 0 ? "rounded-t-lg ml-2" : ""}`}
           onClick={() => setActiveTab(index)}
         >
-          <tab.icon className="inline-block mr-2" />
+          {React.createElement(tab.icon, { className: "inline-block mr-2" })}
           <span className="truncate">{tab.description}</span>
           <AiOutlineClose
             className="inline-block ml-2"

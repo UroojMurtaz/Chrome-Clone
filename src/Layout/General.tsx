@@ -1,23 +1,16 @@
 import Tabs from "../Components/Tabs";
 import { Outlet } from "react-router-dom";
 import SearchBar from "../Components/SearchBar";
-import { FaBeer, FaCoffee } from "react-icons/fa";
+
 
 const General = () => {
-  const tabs = [
-    {
-      label: "Tab 1 Google Chrome",
-      content: "Content for Tab 1",
-      icon: FaBeer,
-    },
-    { label: "Tab 2 its Urooj", content: "Content for Tab 2", icon: FaCoffee },
-  ];
+
   return (
     <>
       <div className="min-h-screen flex flex-col">
         <header className="bg-white  text-white sticky top-0 z-10 ">
           <div className="bg-slate-100  text-white sticky top-0 z-10 ">
-            <Tabs tabs={tabs} />
+            <Tabs />
           </div>
           <SearchBar />
           <hr className="mt-5 sticky top-0 z-10" />

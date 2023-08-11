@@ -10,7 +10,14 @@ import {
     FcRotateCamera,
     FcRules
 } from "react-icons/fc";
-export const icons = [
+import { ReactNode } from 'react';
+interface IconData {
+    value: ReactNode;
+    label: string;
+    icon: ReactNode;
+}
+
+const icons: IconData[] = [
     { value: FcAssistant, label: "Assistant", icon: FcAssistant },
     { value: FcBriefcase, label: "Briefcase", icon: FcBriefcase },
     { value: FcSelfie, label: "Selfie", icon: FcSelfie },
@@ -23,3 +30,5 @@ export const icons = [
     { value: FcRules, label: "Rules", icon: FcRules }
 
 ];
+
+export default icons;

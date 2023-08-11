@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
-import Select, { OptionProps } from 'react-select';
-import MyContext from '../context/TabContext';
-import { icons } from '../Data/iconsData';
+import React, { useState, useContext } from "react";
+import Select, { OptionProps } from "react-select";
+import MyContext from "../context/TabContext";
+import icons from "../Data/iconsData";
 
 interface Icon {
   value: string;
@@ -11,7 +11,7 @@ interface Icon {
 
 const TabForm: React.FC = () => {
   const [selectedIcon, setSelectedIcon] = useState<Icon | null>(null);
-  const [description, setDescription] = useState<string>('');
+  const [description, setDescription] = useState<string>("");
   const { tabValue, setTabValue } = useContext(MyContext);
 
   const addTab = (e: React.FormEvent) => {
@@ -30,7 +30,7 @@ const TabForm: React.FC = () => {
       {...innerProps}
       className="flex items-center py-2 pl-3 pr-2 hover:bg-gray-200 cursor-pointer"
     >
-      {React.createElement(data.icon, { className: 'mr-3 text-blue-500' })}
+      {React.createElement(data.icon, { className: "mr-3 text-blue-500" })}
       <span>{label}</span>
     </div>
   );
@@ -52,13 +52,13 @@ const TabForm: React.FC = () => {
                   styles={{
                     control: (provided) => ({
                       ...provided,
-                      backgroundColor: '#e8eaf6',
-                      border: 'none',
-                      hover: 'red',
-                      padding: '4px',
-                      outline: 'none',
-                      borderRadius: '5px',
-                      width: '100%',
+                      backgroundColor: "#e8eaf6",
+                      border: "none",
+                      hover: "red",
+                      padding: "4px",
+                      outline: "none",
+                      borderRadius: "5px",
+                      width: "100%",
                     }),
                   }}
                   defaultValue={selectedIcon}
