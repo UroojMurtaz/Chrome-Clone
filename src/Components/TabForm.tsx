@@ -6,7 +6,7 @@ import icons from "../Data/iconsData";
 interface Icon {
   value: React.ElementType;
   label: string;
-  icon: React.ElementType<any>;
+  icon: React.ElementType;
 }
 
 const TabForm: React.FC = () => {
@@ -61,8 +61,8 @@ const TabForm: React.FC = () => {
                       width: "100%",
                     }),
                   }}
-                  defaultValue={selectedIcon}
-                  onChange={(newValue) => setSelectedIcon(newValue)}
+                  value={selectedIcon} // Use 'value' instead of 'defaultValue'
+                  onChange={(newValue) => setSelectedIcon(newValue as Icon)} // Use 'as Icon' to ensure the correct type
                   options={icons as Icon[]}
                   components={{ Option }}
                 />
