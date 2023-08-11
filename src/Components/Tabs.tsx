@@ -4,12 +4,12 @@ import { BiPlus } from "react-icons/bi";
 import MyContext from "../context/TabContext";
 
 const Tabs: React.FC = () => {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState<number>(0);
   const context = useContext(MyContext);
 
   const maxVisibleTabs = 5;
   const calculateTabWidth = () => {
-    const visibleTabCount = Math.min(context?.tabValue.length, maxVisibleTabs);
+    const visibleTabCount = Math.min(context?.tabValue.length || 0, maxVisibleTabs);
     return `w-${Math.floor((1 / visibleTabCount) * 12)}/12`;
   };
 
