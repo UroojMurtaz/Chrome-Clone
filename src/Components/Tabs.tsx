@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { FcAssistant } from "react-icons/fc";
 import { AiOutlineClose } from "react-icons/ai";
 import { BiPlus } from "react-icons/bi";
 import MyContext from "../context/TabContext";
