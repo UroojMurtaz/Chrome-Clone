@@ -4,7 +4,7 @@ import MyContext from "../context/TabContext";
 import icons from "../Data/iconsData";
 
 interface Icon {
-  value: string;
+  value: React.ElementType;
   label: string;
   icon: React.ElementType;
 }
@@ -12,16 +12,16 @@ interface Icon {
 const TabForm: React.FC = () => {
   const [selectedIcon, setSelectedIcon] = useState<Icon | null>(null);
   const [description, setDescription] = useState<string>("");
-  const { tabValue, setTabValue } = useContext(MyContext);
+  const context = useContext(MyContext);
 
   const addTab = (e: React.FormEvent) => {
     e.preventDefault();
-    if (selectedIcon) {
+    if (selectedIcon && context) {
       const obj = {
         icon: selectedIcon.value,
         description: description,
       };
-      setTabValue([...tabValue, obj]);
+      context.setTabValue([...context.tabValue, obj]);
     }
   };
 

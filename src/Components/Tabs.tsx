@@ -5,24 +5,26 @@ import MyContext from "../context/TabContext";
 
 const Tabs: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
-  const { tabValue, setTabValue } = useContext(MyContext);
+  const context = useContext(MyContext);
 
   const maxVisibleTabs = 5;
   const calculateTabWidth = () => {
-    const visibleTabCount = Math.min(tabValue?.length, maxVisibleTabs);
+    const visibleTabCount = Math.min(context?.tabValue.length, maxVisibleTabs);
     return `w-${Math.floor((1 / visibleTabCount) * 12)}/12`;
   };
 
   const tabWidth = calculateTabWidth();
 
   const handleCloseTab = (index: number) => {
-    const updatedTabs = tabValue.filter((_, tabIndex) => tabIndex !== index);
-    setTabValue(updatedTabs);
+    if (context) {
+      const updatedTabs = context.tabValue.filter((_, tabIndex) => tabIndex !== index);
+      context.setTabValue(updatedTabs);
+    }
   };
 
   return (
     <div className="flex overflow-x-auto">
-      {tabValue.map((tab, index) => (
+      {context?.tabValue.map((tab, index) => (
         <button
           key={index}
           className={`py-1 px-2 ${tabWidth} ${
