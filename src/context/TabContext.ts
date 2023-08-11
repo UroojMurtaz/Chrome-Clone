@@ -3,6 +3,7 @@ import { createContext, Dispatch, SetStateAction } from "react";
 interface Tab {
   icon: React.ElementType;
   description: string;
+  id:number
 }
 
 interface MyContextType {

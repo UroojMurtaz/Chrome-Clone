@@ -2,10 +2,12 @@ import React, { useState, useContext } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { BiPlus } from "react-icons/bi";
 import MyContext from "../context/TabContext";
+import { useNavigate } from "react-router-dom";
 
 const Tabs: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
   const context = useContext(MyContext);
+  const navigate=useNavigate()
 
   const maxVisibleTabs = 5;
   const calculateTabWidth = () => {
@@ -14,6 +16,35 @@ const Tabs: React.FC = () => {
   };
 
   const tabWidth = calculateTabWidth();
+
+  const handleDragStart = (event: React.DragEvent, index: number) => {
+    event.dataTransfer.setData("text/plain", index.toString());
+    
+    event.target.style.opacity = "0.5";
+  };
+
+  const handleDragEnd = (event: React.DragEvent) => {
+    event.target.style.opacity = "1";
+   
+  };
+
+  const handleDragOver = (event: React.DragEvent, targetIndex: number) => {
+    event.preventDefault();
+    event.stopPropagation();
+  };
+
+  const handleDrop = (event: React.DragEvent, targetIndex: number) => {
+    event.preventDefault();
+    const sourceIndex = Number(event.dataTransfer.getData("text/plain"));
+    setActiveTab(targetIndex);
+
+    if (sourceIndex !== targetIndex) {
+      const updatedTabs = [...context?.tabValue];
+      const [movedTab] = updatedTabs.splice(sourceIndex, 1);
+      updatedTabs.splice(targetIndex, 0, movedTab);
+      context?.setTabValue(updatedTabs);
+    }
+  };
 
   const handleCloseTab = (index: number) => {
     if (context) {
@@ -37,6 +68,11 @@ const Tabs: React.FC = () => {
               : ""
           } ${index === 0 ? "rounded-t-lg ml-2" : ""}`}
           onClick={() => setActiveTab(index)}
+          onDragStart={(event) => handleDragStart(event, index)}
+          onDragEnd={handleDragEnd}
+          onDragOver={(event) => handleDragOver(event, index)}
+          onDrop={(event) => handleDrop(event, index)}
+          draggable
         >
           {React.createElement(tab.icon, { className: "inline-block mr-2" })}
           <span className="truncate">{tab.description}</span>
@@ -48,6 +84,7 @@ const Tabs: React.FC = () => {
       ))}
       <button
         className={`py-1 px-2 ${tabWidth} text-gray-800 rounded-t-lg bg-slate-100`}
+        onClick={()=>navigate("/add-tab")}
       >
         <BiPlus className="inline-block mr-2 text-gray-600" />
       </button>

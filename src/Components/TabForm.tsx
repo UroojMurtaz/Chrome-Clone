@@ -13,6 +13,7 @@ const TabForm: React.FC = () => {
   const [selectedIcon, setSelectedIcon] = useState<Icon | null>(null);
   const [description, setDescription] = useState<string>("");
   const context = useContext(MyContext);
+  console.log(context?.tabValue)
 
   const addTab = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,6 +21,7 @@ const TabForm: React.FC = () => {
       const obj = {
         icon: selectedIcon.value,
         description: description,
+        id: context.tabValue.length + 1,
       };
       context.setTabValue([...context.tabValue, obj]);
     }
