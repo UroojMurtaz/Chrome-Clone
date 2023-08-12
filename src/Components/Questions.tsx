@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 interface QuestionProps {
-    question: {
-      id: number;
-      text: string;
-      subQuestions?: any[];
-      answer?: string;
-    };
-    onSelect: (question: any) => void;
-  }
-  
-  const Question: React.FC<QuestionProps> = ({ question, onSelect }) => {
+  question: {
+    questionNo: string;
+    id: number;
+    text: string;
+    subQuestions?: any[];
+    answer?: string;
+  };
+  onSelect: (question: any) => void;
+}
+
+const Question: React.FC<QuestionProps> = ({ question, onSelect }) => {
   const [expanded, setExpanded] = useState<boolean>(false);
 
   const handleSelect = () => {
@@ -24,8 +25,14 @@ interface QuestionProps {
         onClick={handleSelect}
         className="cursor-pointer flex items-center justify-between text-lg font-semibold mb-2"
       >
-        <span>{question.id} : {question.text}</span>
-        <span className={`transform transition-transform ${expanded ? "rotate-90" : "rotate-0"}`}>
+        <span>
+          {question.questionNo} : {question.text}
+        </span>
+        <span
+          className={`transform transition-transform ${
+            expanded ? "rotate-90" : "rotate-0"
+          }`}
+        >
           <svg
             className="w-6 h-6 text-gray-500"
             fill="none"

@@ -3,7 +3,10 @@ import QuesData from "../../Data/quesData";
 import Question from "../../Components/Questions";
 
 const Index: React.FC = () => {
-  const [selectedQuestion, setSelectedQuestion] = useState<any | null>(null);
+  const [selectedQuestion, setSelectedQuestion] = useState<unknown | null>(
+    null
+  );
+  console.log(selectedQuestion);
 
   return (
     <div className="bg-gray-100 min-h-screen py-8">
