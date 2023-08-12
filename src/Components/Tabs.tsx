@@ -4,14 +4,23 @@ import { BiPlus } from "react-icons/bi";
 import MyContext from "../context/TabContext";
 import { useNavigate } from "react-router-dom";
 
+interface Tab {
+  icon: React.ElementType;
+  description: string;
+  id:number
+}
+
 const Tabs: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
   const context = useContext(MyContext);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const maxVisibleTabs = 5;
   const calculateTabWidth = () => {
-    const visibleTabCount = Math.min(context?.tabValue.length || 0, maxVisibleTabs);
+    const visibleTabCount = Math.min(
+      context?.tabValue.length || 0,
+      maxVisibleTabs
+    );
     return `w-${Math.floor((1 / visibleTabCount) * 12)}/12`;
   };
 
@@ -19,16 +28,16 @@ const Tabs: React.FC = () => {
 
   const handleDragStart = (event: React.DragEvent, index: number) => {
     event.dataTransfer.setData("text/plain", index.toString());
-    
-    event.target.style.opacity = "0.5";
+
+    // event.target.style.opacity = "0.5";
+    setActiveTab(index);
   };
 
-  const handleDragEnd = (event: React.DragEvent) => {
-    event.target.style.opacity = "1";
-   
-  };
+  // const handleDragEnd = (event: React.DragEvent) => {
+  //   // event.target.style.opacity = "1";
+  // };
 
-  const handleDragOver = (event: React.DragEvent, targetIndex: number) => {
+  const handleDragOver = (event: React.DragEvent) => {
     event.preventDefault();
     event.stopPropagation();
   };
@@ -39,7 +48,7 @@ const Tabs: React.FC = () => {
     setActiveTab(targetIndex);
 
     if (sourceIndex !== targetIndex) {
-      const updatedTabs = [...context?.tabValue];
+      const updatedTabs = [...context?.tabValue as Tab[]];
       const [movedTab] = updatedTabs.splice(sourceIndex, 1);
       updatedTabs.splice(targetIndex, 0, movedTab);
       context?.setTabValue(updatedTabs);
@@ -48,7 +57,9 @@ const Tabs: React.FC = () => {
 
   const handleCloseTab = (index: number) => {
     if (context) {
-      const updatedTabs = context.tabValue.filter((_, tabIndex) => tabIndex !== index);
+      const updatedTabs = context.tabValue.filter(
+        (_, tabIndex) => tabIndex !== index
+      );
       context.setTabValue(updatedTabs);
     }
   };
@@ -69,8 +80,8 @@ const Tabs: React.FC = () => {
           } ${index === 0 ? "rounded-t-lg ml-2" : ""}`}
           onClick={() => setActiveTab(index)}
           onDragStart={(event) => handleDragStart(event, index)}
-          onDragEnd={handleDragEnd}
-          onDragOver={(event) => handleDragOver(event, index)}
+          // onDragEnd={handleDragEnd}
+          onDragOver={(event) => handleDragOver(event)}
           onDrop={(event) => handleDrop(event, index)}
           draggable
         >
@@ -84,7 +95,7 @@ const Tabs: React.FC = () => {
       ))}
       <button
         className={`py-1 px-2 ${tabWidth} text-gray-800 rounded-t-lg bg-slate-100`}
-        onClick={()=>navigate("/add-tab")}
+        onClick={() => navigate("/add-tab")}
       >
         <BiPlus className="inline-block mr-2 text-gray-600" />
       </button>
