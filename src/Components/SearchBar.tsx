@@ -1,12 +1,14 @@
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi2";
 import { BiRevision } from "react-icons/bi";
 import { FcGoogle } from "react-icons/fc";
+import { useNavigate } from "react-router-dom";
 const SearchBar = () => {
+  const Navigate = useNavigate();
   return (
     <div className="flex items-center space-x-4 m-2">
-      <HiArrowLeft className="text-slate-400 text-2xl font-medium" />
-      <HiArrowRight className="text-slate-400 text-2xl font-medium" />
-      <BiRevision className="text-slate-700 text-2xl font-medium" />
+      <HiArrowLeft className="text-slate-400 text-2xl font-medium" onClick={()=>Navigate(-1)} />
+      <HiArrowRight className="text-slate-400 text-2xl font-medium" onClick={()=>Navigate(1)} />
+      <BiRevision className="text-slate-700 text-2xl font-medium" onClick={()=>window.location.reload()} />
       <label className="relative block w-full ">
         <span className="sr-only">Search</span>
         <span className="absolute inset-y-0 left-0 flex items-center pl-2">

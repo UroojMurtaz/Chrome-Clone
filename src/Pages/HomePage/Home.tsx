@@ -16,7 +16,9 @@ const Home = () => {
       >
         Add Tab
       </button>
-      <button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-md focus:outline-none focus:ring focus:ring-green-300">
+      <button
+      onClick={() => navigate("/faqs")}
+      className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-md focus:outline-none focus:ring focus:ring-green-300">
         FAQs
       </button>
     </div>

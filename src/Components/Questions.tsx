@@ -4,9 +4,11 @@ interface QuestionProps {
     questionNo: string;
     id: number;
     text: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     subQuestions?: any[];
     answer?: string;
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onSelect: (question: any) => void;
 }
 
