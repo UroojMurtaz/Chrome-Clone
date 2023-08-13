@@ -20,9 +20,8 @@ const Question: React.FC<QuestionProps> = ({ question, onSelect }) => {
     setExpanded(!expanded);
   };
 
-  console.log("question", question);
   return (
-    <div className="border rounded shadow-md p-4 mb-4">
+    <div className="border rounded shadow-md p-4 mb-4 ">
       <div
         onClick={handleSelect}
         className="cursor-pointer flex items-center justify-between text-lg font-semibold mb-2"
