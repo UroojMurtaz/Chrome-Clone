@@ -28,14 +28,9 @@ const Tabs: React.FC = () => {
 
   const handleDragStart = (event: React.DragEvent, index: number) => {
     event.dataTransfer.setData("text/plain", index.toString());
-
-    // event.target.style.opacity = "0.5";
     setActiveTab(index);
   };
 
-  // const handleDragEnd = (event: React.DragEvent) => {
-  //   // event.target.style.opacity = "1";
-  // };
 
   const handleDragOver = (event: React.DragEvent) => {
     event.preventDefault();
