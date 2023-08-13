@@ -111,6 +111,7 @@ const TabForm: React.FC = () => {
                 className="bg-indigo-50 px-4 py-2 outline-none rounded-md w-full"
                 placeholder="Add tab description"
                 onChange={(e) => setDescription(e.target.value)}
+                maxLength={30}
               />
               <div className="text-red-500">
                 {formErrors.description && <p>{formErrors.description}</p>}
