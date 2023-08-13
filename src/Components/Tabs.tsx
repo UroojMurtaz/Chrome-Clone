@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 interface Tab {
   icon: React.ElementType;
   description: string;
-  id:number
+  id: number;
 }
 
 const Tabs: React.FC = () => {
@@ -31,7 +31,6 @@ const Tabs: React.FC = () => {
     setActiveTab(index);
   };
 
-
   const handleDragOver = (event: React.DragEvent) => {
     event.preventDefault();
     event.stopPropagation();
@@ -43,7 +42,7 @@ const Tabs: React.FC = () => {
     setActiveTab(targetIndex);
 
     if (sourceIndex !== targetIndex) {
-      const updatedTabs = [...context?.tabValue as Tab[]];
+      const updatedTabs = [...(context?.tabValue as Tab[])];
       const [movedTab] = updatedTabs.splice(sourceIndex, 1);
       updatedTabs.splice(targetIndex, 0, movedTab);
       context?.setTabValue(updatedTabs);
